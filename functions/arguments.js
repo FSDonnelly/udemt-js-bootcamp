@@ -7,7 +7,7 @@ let add = function (a, b, c) {
 let result = add(10, 1, 5)
 console.log(result) // logs 16 
 
-// Default Arfuments
+// Default Arguments
 
 let getScoreText = function (name = 'Anonymous', score = 0) {
     return 'Name: ' + name + ' ' + 'Score: ' + score
