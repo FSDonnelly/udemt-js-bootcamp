@@ -6,5 +6,12 @@ notes.push('My new note') // adds to end of array
 console.log(notes.shift())// removes first item
 console.log(notes.unshift('My first note'))// adds new item to first on the list
 
+notes[2] = 'This is now the new note 3'
+
+notes.forEach(function (item, index) {
+    console.log(item)
+    console.log(index)
+})
+
 console.log(notes.length)
 console.log(notes)
