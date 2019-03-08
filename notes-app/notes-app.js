@@ -1,16 +1,15 @@
-const notes = [{
-    title: 'My next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise, Eating better'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}]
+let notes = []
 
 const filters = {
     searchText: ''
+}
+
+// Check for existing saved data
+const notesJSON = localStorage.getItem('notes')
+
+
+if (notesJSON !== null) {
+    notes = JSON.parse(notesJSON)
 }
 
 const renderNotes = function (notes, filters) {
@@ -19,10 +18,15 @@ const renderNotes = function (notes, filters) {
     })
 
     document.querySelector('#notes').innerHTML = ''
-   
+
     filteredNotes.forEach(function (note) {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+
+        if (note.title > 0) {
+            noteEl.textContent = note.title
+        } else {
+            noteEl.textContent = 'No note found'
+        }      
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
@@ -30,15 +34,37 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'The button was clicked'
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters)
 })
 
 
 document.querySelector('#search-text').addEventListener('input', function (e) {
-   filters.searchText = e.target.value
-   renderNotes(notes, filters)
+    filters.searchText = e.target.value
+    renderNotes(notes, filters)
 })
 
-document.querySelector("#for-fun").addEventListener('change', function (e) {
-    console.log(e.target.checked)
+document.querySelector("#filter-by").addEventListener('change', function (e) {
+    console.log(e.target.value)
 })
+
+// const user = {
+//     name: 'Frank',
+//     age: 38
+// }
+
+// const userJSON = JSON.stringify(user)
+// console.log(userJSON)
+// localStorage.setItem('user', userJSON)
+
+// const userJSON = localStorage.getItem('user')
+// const user = JSON.parse(userJSON)
+// console.log(`${user.name} is ${user.age}`)
+// localStorage.setItem('location', 'San Diego')
+// console.log(localStorage.getItem('location'))
+// localStorage.removeItem('location')
+// localStorage.clear()

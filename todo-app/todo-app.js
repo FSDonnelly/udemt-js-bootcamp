@@ -1,27 +1,30 @@
-const todos = [{
-    text: 'Order cat food',
-    completed: false
-},{
-    text: 'Clean kitchen',
-    completed: true
-},{
-    text: 'Buy food',
-    completed: true
-},{
-    text: 'Do work',
-    completed: false
-},{
-    text: 'Exercise',
-    completed: true
-}]
+let todos = []
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    hideCompleted: false
+}
+
+// Check for existing saved data
+const todosJSON = localStorage.getItem('todos')
+
+
+if (todosJSON !== null) {
+    todos = JSON.parse(todosJSON)
 }
 
 const renderTodos = function (todos, filters) {
-    const filteredTodos = todos.filter(function (todo) {
+    let filteredTodos = todos.filter(function (todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+
+    filteredTodos = filteredTodos.filter(function (todo) {
+        return !filters.hideCompleted || !todo.completed
+        // if (filters.hideCompleted) {
+        //     return !todo.completed
+        // } else {
+        //     return true
+        // }
     })
 
     const incompleteTodos = filteredTodos.filter(function (todo) {
@@ -44,33 +47,23 @@ const renderTodos = function (todos, filters) {
 renderTodos(todos, filters)
 
 
-
-
-// Listen for new todo creation
-document.querySelector('#add-todo').addEventListener('click', function (e) {
-    console.log('A new todo was added')
-})
-
-
-document.querySelector('#new-todo').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
-
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
 
-//  You have 2 todos left (p element)
-// Add a p for each todo above (use text value)
+document.querySelector('#new-todo').addEventListener('submit', function (e) {
+    e.preventDefault()
+    todos.push({
+        text: e.currentTarget.elements.text.value,
+        completed: false
+    })
+    localStorage.setItem('todos', JSON.stringify(todos))
+    renderTodos(todos, filters)
+    e.target.elements.text.value = ''
+})
 
-
-
-// Query all and remove
-// const ps = document.querySelectorAll('p')
-
-// ps.forEach(function (p) {
-//     if (p.textContent.includes('the')) {
-//         p.remove()
-//     }
-// })
+document.querySelector('#hide-completed').addEventListener('change', function (e) {
+    filters.hideCompleted = e.target.checked
+    renderTodos(todos,filters)
+})
