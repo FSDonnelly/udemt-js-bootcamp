@@ -1,12 +1,30 @@
-const Person = function (firstName, lastName, age) {
+// Prototypal Inheritance
+
+const Person = function (firstName, lastName, age, likes = []) {
     this.firstName = firstName
     this.lastName = lastName
     this.age = age
+    this.likes = likes
 }
 
-const me = new Person('Frank', 'Donnelly', 38)
-me.firstName = 'Steve'
-console.log(me)
+Person.prototype.getBio = function () {
+    let bio = `${this.firstName} is ${this.age}.`
 
-const person2 = new Person('Clansy', 'Turner', 22)
-console.log(person2)
+    this.likes.forEach((like) => {
+        bio += ` ${this.firstName} likes ${like}.`
+    })
+    return bio
+}
+
+Person.prototype.setName = function (fullName) {
+    const names = fullName.split(' ')
+    this.firstName = names[0]
+    this.lastName = names[1]
+}
+
+const me = new Person('Frank', 'Donnelly', 38, ['Eating', 'Camping'])
+me.setName('Ted Bundy')
+console.log(me.getBio())
+
+const person2 = new Person('Clancey', 'Turner', 51)
+console.log(person2.getBio())
