@@ -1,30 +1,15 @@
-// Primitive value string, number, boolean, null, undefined
+const puzzleEl = document.querySelector('#puzzle')
+const guessesEl = document.querySelector('#guesses')
+const game1 = new Hangman('Cat', 2)
 
-// Object myObject --> Object.prototype --> null
-const myObject = new Object({
-    name: `The War of Art`
+puzzleEl.textContent = game1.getPuzzle()
+guessesEl.textContent = game1.getStatusMessage()
+console.log(game1.status)
+
+window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGuess(guess)
+    puzzleEl.textContent = game1.getPuzzle()
+    guessesEl.textContent = game1.getStatusMessage()
+    console.log(game1.status)
 })
-
-Object.prototype.someNewMethod = () => `This is the new function`
-
-// hasOwnProperty
-console.log(myObject.someNewMethod(`hasOwnProperty`))
-console.log(myObject)
-
-// Array myArray --> Array.prototype --> Object.prototype --> null
-
-const team = [`Luke`, `Han`]
-console.log(team.hasOwnProperty(`filter`))
-
-
-// Function --> Function.prototype --> Object.prototype --> null
-
-const getScore = () => 1
-console.log(getScore)
-
-// Object wrapper on strings, number, boolean
-const product = `Computer`
-console.log(product.split())
-
-const otherProduct = new String(`Phone`)
-console.log(otherProduct)
