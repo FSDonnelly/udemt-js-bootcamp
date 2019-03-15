@@ -6,7 +6,7 @@ class Hangman {
         this.status = 'playing'
     }
     calculateStatus() {
-        const finished = this.word.every((letter) => this.guessedLetters.includes(letter))
+        const finished = this.word.every((letter) => this.guessedLetters.includes(letter) || letter === ' ')
 
         if (this.remainingGuesses === 0) {
             this.status = 'failed'
@@ -32,7 +32,7 @@ class Hangman {
             if (this.guessedLetters.includes(letter) || letter === ' ') {
                 puzzle += letter
             } else {
-                puzzle += '*'
+                puzzle += '_'
             }
         })
 
