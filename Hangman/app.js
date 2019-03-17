@@ -12,20 +12,16 @@ window.addEventListener('keypress', function (e) {
     guessesEl.textContent = game1.statusMessage
 })
 
-getPuzzle("3", (error, puzzle) => {
-    if (error) {
-        console.log(`Error: ${error}`)
-    } else {
-        console.log(puzzle)
-    }
+getPuzzle(`2`).then((puzzle) => {
+    console.log(puzzle)
+}, (error) => {
+    console.log(`Error: ${error}`)
 })
 
-getCountry('SY', (error, country) => {
-    if (error) {
-        console.log(error)
-    } else {
-        console.log(`Country name: ${country.name}`)
-    }
+getCountry('US').then((country) => {
+    console.log(country.name)
+}, (error) => {
+    console.log(`Error: ${error}`)
 })
 
 
