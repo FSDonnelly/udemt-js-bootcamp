@@ -16,7 +16,6 @@ const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
 })
 
 const getCountry = (countryCode) => new Promise((resolve, reject) => {
-    {
         const requestCountry = new XMLHttpRequest()
     
         requestCountry.addEventListener('readystatechange', (e) => {
@@ -31,5 +30,5 @@ const getCountry = (countryCode) => new Promise((resolve, reject) => {
     
         requestCountry.open('GET', 'http://restcountries.eu/rest/v2/all')
         requestCountry.send()
-    } 
+ 
 })

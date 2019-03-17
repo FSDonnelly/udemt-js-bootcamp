@@ -1,37 +1,47 @@
 // Callback
-const getDataCallback = (cb) => {
+const getDataCallback = (num, cb) => {
     setTimeout(() => {
-        cb( `This is callback error`, undefined)
-        cb( `This is callback error`, undefined)
+        if (typeof num === 'number') {
+            cb(undefined, num * 2)
+        } else {
+            cb('Number must be provided')
+        }
     }, 2000)
 }
 
-getDataCallback((error, data) => {
+getDataCallback(2, (error, data) => {
     if (error) {
         console.log(error)
     } else {
-        console.log(data)
+        getDataCallback(data, (err, data) => {
+            if (err) {
+                console.log('err')
+            } else {
+                console.log(data)
+            }
+        })
     }
 })
 
 // Promise
-const getDataPromise = (data) => new Promise((resolve, reject) => {
+const getDataPromise = (num) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        resolve(`This is promise data: ${data}`)
-        // reject(`This is my promise error`)
-        // reject(`This is my promise error`)
+       typeof num === 'number' ? resolve(num * 2) : reject('Number must be provided')
     }, 2000)
 })
 
-const myPromise = getDataPromise(123)
-myPromise.then((data) => {
-    console.log(data)
-}, (error) => {
-    console.log(error)
+getDataPromise(3).then((data) => {
+    getDataPromise(data).then((data) => {
+        console.log(`Promise data: ${data}`)
+    }, (err) => {
+        console.log(err)
+    })
+}, (err) => {
+    console.log(err)
 })
-
-myPromise.then((data) => {
+// Promise chaining
+getDataPromise(10).then((data) => {
+    return getDataPromise(data)
+}).then((data) => {
     console.log(data)
-}, (error) => {
-    console.log(error)
 })
