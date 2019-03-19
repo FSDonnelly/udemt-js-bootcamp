@@ -10,19 +10,6 @@ const getPuzzle = async (wordCount) => {
     }
 }
 
-
-// const getPuzzleOld = (wordCount) => {
-//     return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
-//         if (response.status === 200) {
-//             return response.json()
-//         } else {
-//             throw new Error(`Unable to fetch puzzle`)
-//         }
-//     }).then((data) => {
-//         return data.puzzle
-//     })
-// }
-
 const getCurrentCountry = async () => {
     const location = await getLocation()
     return getCountry(location.country)
@@ -39,16 +26,6 @@ const getCountry = async (countryCode) => {
     }
 }
 
-// const getCountryOld = (countryCode) => {
-//     return fetch('http://restcountries.eu/rest/v2/all').then((response) => {
-//         if (response.status === 200) {
-//             return response.json()
-//         } else {
-//             throw new Error(`Unable to fetch data`)
-//         }
-//     }).then((data) => data.find((country) => country.alpha2Code === countryCode))
-// }
-
 const getLocation = async () => {
     const response = await fetch(`http://ipinfo.io/json?token=7148e1167bb190`)
 
@@ -58,13 +35,3 @@ const getLocation = async () => {
         throw new Error(`Unable to fetch data`)
     }
 }
-
-// const getLocationOld = () => {
-//     return fetch(`http://ipinfo.io/json?token=7148e1167bb190`).then((response) => {
-//         if (response.status === 200) {
-//             return response.json()
-//         } else {
-//             throw new Error(`Unable to fetch data`)
-//         }
-//     })
-// }
