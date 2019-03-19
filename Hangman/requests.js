@@ -20,3 +20,13 @@ const getCountry = (countryCode) => {
         }
     }).then((data) => data.find((country) => country.alpha2Code === countryCode))
 }
+
+const getLocation = () => {
+    return fetch(`http://ipinfo.io/json?token=7148e1167bb190`).then((response) => {
+        if (response.status === 200) {
+            return response.json()
+        } else {
+            throw new Error(`Unable to fetch data`)
+        }
+    })
+}
