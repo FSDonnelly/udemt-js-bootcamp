@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/styles/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
 </head>
 <body>
+    <container id='container'>
     <div id='puzzle'></div>
-    <div id='guesses'></div>
-    <button id='reset'>Reset</button>
-    <script src="requests.js"></script>
-    <script src="hangman.js"></script>
-    <script src="app.js"></script>
+    <div id='guesses' class='warning '></div>
+    <button id='reset'class='warning'>Reset</button>
+    </container>
+    <script src="/scripts/requests.js"></script>
+    <script src="/scripts/hangman.js"></script>
+    <script src="/scripts/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+#puzzle, button {
+    color: white;
+    background-color: black;
+}
+
+.warning {
+    color: white;
+    background-color: blue;
+}
