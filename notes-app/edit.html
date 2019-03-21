@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" href="/images/icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,15 +19,15 @@
     </header>
     <div class="actions">
         <div class="actions__container actions__container--spaced">
-            <a href="/index.html">Back to Home Page</a>
+            <a href="/index.html">Home Page</a>
             <span id="last-edited"></span>
         </div>
     </div>
-
-    <input id="note-title" placeholder="Note title">
-
-    <textarea id="note-body" placeholder="Enter note text" cols="30" rows="10"></textarea>
-    <button id="remove-note">Remove Note</button>
+    <div class="container">
+        <input class='title-input' id="note-title" placeholder="Note title">
+        <textarea class='body-input' id="note-body" placeholder="Enter note text" cols="30" rows="10"></textarea>
+        <button class='button button--secondary' id="remove-note">Remove Note</button>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script src="/scripts/notes-functions.js"></script>
     <script src="/scripts/notes-edit.js"></script>
