@@ -21,7 +21,7 @@ const render = () => {
 }
 
 const startGame = async () => {
-    const puzzle = await getPuzzle(`${Math.floor((Math.random() * 5) + 1)}`)
+    const puzzle = await getPuzzle(`${Math.floor((Math.random() * 3) + 1)}`)
     game1 = new Hangman(puzzle, (Math.floor(puzzle.length / 2)))
     render()
 }
