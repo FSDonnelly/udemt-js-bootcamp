@@ -2,7 +2,7 @@
 
 const add = (a, b) => a + b
 
-const name = 'Frank'
+const name = 'Dave'
 
 // Default Export (only one)
 
