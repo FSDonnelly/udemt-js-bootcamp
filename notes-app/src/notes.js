@@ -41,7 +41,6 @@ const createNote = () => {
 // Remove a note from the list
 const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) => note.id === id)
-
     if (noteIndex > -1) {
         notes.splice(noteIndex, 1)
         saveNotes()
@@ -89,7 +88,7 @@ const updateNote = (id, updates) => {
     const note = notes.find((note) => note.id === id)
 
     if (!note) {
-        return 
+        return
     }
 
     if (typeof updates.title === 'string') {
